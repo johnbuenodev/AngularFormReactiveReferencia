@@ -1,0 +1,41 @@
+<form [formGroup]="formCadastro" (ngSubmit)="ngSubmitFormulario()">
+  <label>
+    Primeiro Nome:
+  <input type="text" formControlName="firstName" maxlength="10">
+  </label>
+  <br>
+  <span class="alert-1" *ngIf="formCadastro.get('firstName')?.errors && (formCadastro.get('firstName')?.dirty && formCadastro.get('firstName')?.touched)">
+    Campo Nome obrigatorio! 
+  </span>
+  <span class="alert-1" *ngIf="formCadastro.get('firstName')?.errors && (formCadastro.get('firstName')?.dirty && formCadastro.get('firstName')?.touched)">
+    Tamanho minimo: {{ formCadastro.get('firstName')?.errors?.minlength?.requiredLength }}
+  </span>
+  <br>
+  <!-- informado no validators o required     //   maxlength="10" minlength="5"  -->
+  <label>
+    Ultimo Nome:
+  <input type="text" formControlName="lastName" maxlength="10">
+  </label>
+  <br>
+  <br>
+  <label>
+    Email:
+    <input type="email" formControlName="emailUser">
+  </label>
+  <span class="alert-1" *ngIf="formCadastro.get('emailUser')?.errors && (formCadastro.get('emailUser')?.dirty && formCadastro.get('emailUser')?.touched)">
+    Campo E-mail requerido!
+  </span>
+  <br>
+  <br>
+  <p>
+    {{ formCadastro.get('emailUser')?.errors?.required | json}}
+  </p>
+  <br>
+  <br>
+  <span>
+  {{ formCadastro.get('firstName')?.errors | json}} - {{ formCadastro.get('firstName')?.dirty | json}} - {{ formCadastro.get('firstName')?.touched | json}}
+  </span>
+  <br>
+  <br>
+  <button [disabled]="formCadastro.invalid">SALVAR</button>
+</form>
